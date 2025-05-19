@@ -1,7 +1,5 @@
 package application;
 
-import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -17,7 +15,9 @@ public class Program {
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
 		
-		Funcionario fun[] = new Funcionario[10];
+		int tamVetor = 11;
+		
+		Funcionario fun[] = new Funcionario[tamVetor];
 		fun[0] = new Funcionario (1, "alex silva", 5000.0);
 		fun[1] = new Funcionario (2, "carlos santos", 3000.0);
 		fun[2] = new Funcionario (3, "maria pena", 12000.0);
@@ -28,6 +28,7 @@ public class Program {
 		fun[7] = new Funcionario (8, "davi ruiz", 3500.0);
 		fun[8] = new Funcionario (9, "luiza alvarez", 9500.0);
 		fun[9] = new Funcionario (10, "henrique mioto", 15000.0);
+
 		
 		Projeto proj[] = new Projeto[10];
 		
@@ -62,16 +63,45 @@ public class Program {
 		proj[9] = new Projeto ("Tesla", dataInicio9Tesla, dataTermino9Tesla, 2, 800000.0, fun[5]);
 		
 		
-		
-		
-		
-		System.out.println(proj[0]);
-		System.out.println(proj[8]);
+		int opc = 0;
+		while(opc != 50) {
+			mostrarMenu();
+			opc = sc.nextInt();
+			
+			if(opc == 1) {
+				System.out.println();
+				System.out.print("Numero funcional (passível a modificacao pelo sistema): ");
+				Integer numeroFuncional = sc.nextInt();
+				System.out.print("Nome do novo funcionario: ");
+				String name = sc.next();
+				System.out.print("Salario do novo funcionario: ");
+				Double salario = sc.nextDouble();
+				Funcionario f = new Funcionario();
+				f.inserir(numeroFuncional, name, salario, fun, tamVetor);
+				System.out.println();
+			}
+			
+		}
+	
 		
 		
 		
 		
 		sc.close();
+	}
+	
+	public static void mostrarMenu() {
+		System.out.println("#### MENU ####");
+		System.out.println("[1] Adicionar Funcionario");
+		System.out.println("[2] Atualizar Dados do Funcionario");
+		System.out.println("[3] Deletar Funcionario");
+		System.out.println("[4] Adicionar Projeto");
+		System.out.println("[5] Atualizar Dados do Projeto");
+		System.out.println("[6] Deletar Projeto");
+	}
+	
+	public static void mostrarSubMenuInserir() {
+		
 	}
 
 }
