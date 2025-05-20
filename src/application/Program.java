@@ -95,6 +95,15 @@ public class Program {
 				Funcionario f = new Funcionario();
 				f.atualizar(numeroFuncional, novoNome, novoSalario, fun, tamVetor);
 				System.out.println();
+			} 
+			else if(opc == 3) {
+				System.out.println();
+				System.out.println("[MENU] DELETAR");
+				System.out.print("Numero funcional do funcionário que será deletado: ");
+				Integer numeroFuncional = sc.nextInt();
+				Funcionario f = new Funcionario();
+				f.deletar(numeroFuncional, fun, tamVetor);
+				System.out.println();
 			}
 			
 		}

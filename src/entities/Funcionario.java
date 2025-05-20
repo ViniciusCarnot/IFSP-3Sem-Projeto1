@@ -96,14 +96,32 @@ public class Funcionario {
 			
 		}
 		catch(ArrayIndexOutOfBoundsException e) {
-			System.out.println("Erro, o numero funcional escolhido nao existe! Escolha outro e tente novamente!");
+			System.out.println("Erro, o numero funcional digitado nao existe! Escolha outro e tente novamente!");
+		}
+		catch(NullPointerException e) {
+			System.out.println("Erro, nao existe funcionario cadastrado nesse numero funcional para ser atualizado! Escolha outro e tente novamente!");
 		}
 		
 	}
 
 
-	public void deletar() {
-		// TODO Auto-generated method stub
+	public void deletar(Integer numeroFuncional, Funcionario vetor[], Integer tamVetor) {
+		
+		try {
+			
+			for(int i=0; i<tamVetor; i++) {
+				if(vetor[i].getNumero_funcional() == numeroFuncional) {
+					vetor[i] = null;
+					System.out.println("Funcionario deletado com sucesso!");
+					return;
+				}
+			}
+			System.out.println("Erro, o numero funcional digitado nao pertence a nenhum funcionario! Tente novamente!");
+			return;
+		}
+		catch(ArrayIndexOutOfBoundsException e) {
+			System.out.println("Erro, o numero funcional digitado nao existe! Escolha outro e tente novamente!");
+		}
 		
 	}
 	
