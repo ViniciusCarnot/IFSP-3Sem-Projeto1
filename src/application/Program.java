@@ -70,14 +70,30 @@ public class Program {
 			
 			if(opc == 1) {
 				System.out.println();
-				System.out.print("Numero funcional (passível a modificacao pelo sistema): ");
+				System.out.println("[MENU] ADICIONAR");
+				System.out.print("Numero funcional desejado[1-20], (passível a modificacao pelo sistema): ");
 				Integer numeroFuncional = sc.nextInt();
-				System.out.print("Nome do novo funcionario: ");
-				String name = sc.next();
-				System.out.print("Salario do novo funcionario: ");
+				System.out.print("Nome: ");
+				sc.nextLine();
+				String name = sc.nextLine();
+				System.out.print("Salario: ");
 				Double salario = sc.nextDouble();
 				Funcionario f = new Funcionario();
 				f.inserir(numeroFuncional, name, salario, fun, tamVetor);
+				System.out.println();
+			}
+			else if(opc == 2) {
+				System.out.println();
+				System.out.println("[MENU] ATUALIZAR");
+				System.out.print("Numero funcional do funcionário que será atualizado: ");
+				Integer numeroFuncional = sc.nextInt();
+				System.out.print("Novo nome: ");
+				sc.nextLine();
+				String novoNome = sc.nextLine();
+				System.out.print("Novo salario: ");
+				Double novoSalario = sc.nextDouble();
+				Funcionario f = new Funcionario();
+				f.atualizar(numeroFuncional, novoNome, novoSalario, fun, tamVetor);
 				System.out.println();
 			}
 			
@@ -91,7 +107,7 @@ public class Program {
 	}
 	
 	public static void mostrarMenu() {
-		System.out.println("#### MENU ####");
+		System.out.println("#### MENU PRINCIPAL####");
 		System.out.println("[1] Adicionar Funcionario");
 		System.out.println("[2] Atualizar Dados do Funcionario");
 		System.out.println("[3] Deletar Funcionario");
