@@ -85,7 +85,7 @@ public class Projeto {
 		}
 	}
 	
-	public void inserirProjetoFinalizado(String nomeProjeto, LocalDate dataInicio, LocalDate dataTermino, Integer tempoEstimado, Double valorEstimado, 
+	public void inserirProjeto(String nomeProjeto, LocalDate dataInicio, LocalDate dataTermino, Integer tempoEstimado, Double valorEstimado, 
 			Funcionario funcionario, Funcionario vetorFuncionario[], Integer tamVetorFuncionario, Projeto projeto, Projeto vetorProjeto[], Integer tamVetorProjeto) {
 		
 		
@@ -153,8 +153,58 @@ public class Projeto {
 		
 	}
 	
-	public void inserirProjetoEmAndamento(String nomeProjeto, LocalDate dataInicio, Integer tempoEstimado, Double valorEstimado, 
+	
+	public void atualizarProjeto(String nomeProjeto, LocalDate dataInicio, LocalDate dataTermino, Integer tempoEstimado, Double valorEstimado, 
 			Funcionario funcionario, Funcionario vetorFuncionario[], Integer tamVetorFuncionario, Projeto projeto, Projeto vetorProjeto[], Integer tamVetorProjeto) {
+		
+		try {
+			
+			//verificar se o projeto existe
+			Boolean projetoExiste = false;
+			
+			for(int i=0; vetorProjeto[i] != null; i++) {
+				if(nomeProjeto.equals(vetorProjeto[i].getNome())) {
+					projetoExiste = true;
+				}
+			}
+			
+			if(projetoExiste == false) {
+				System.out.println("Não foi encontrado o projeto digitado! Verique se o nome do projeto esta escrito corretamente e tente de novo!");
+				return;
+			}
+			
+			//verificar se o novo funcionario, existe
+			Boolean funcionarioExiste = false;
+			
+			for(int i=0; i < tamVetorFuncionario && funcionarioExiste != true; i++) {
+				if(vetorFuncionario[i] == null && funcionarioExiste != true || funcionario == null) {
+					System.out.println("O novo funcionario digitado nao existe, logo o projeto nao pode ser atualizado!");
+					return;
+				} else if(funcionario.getNumero_funcional() == vetorFuncionario[i].getNumero_funcional()) {
+					funcionarioExiste = true;
+				}	
+			}	
+			
+			//alocando projeto no vetor de projetos
+			if(projetoExiste == true && funcionarioExiste == true) {
+				Projeto p = new Projeto(nomeProjeto, dataInicio, dataTermino, tempoEstimado, valorEstimado, funcionario);
+				for(int i=0; i<tamVetorProjeto; i++) {
+					if(vetorProjeto[i].getNome().equals(p.getNome())) {
+							vetorProjeto[i] = p;
+							System.out.println("Projeto atualizado com sucesso!");
+							System.out.println(p);
+							return;
+					}
+				}
+			}
+			
+		}
+		catch(ArrayIndexOutOfBoundsException e) {
+			System.out.println("Erro: " + e.getMessage());
+		}
+		catch(NullPointerException e1) {
+			System.out.println("Erro: " + e1.getMessage());
+		}
 		
 	}
 	

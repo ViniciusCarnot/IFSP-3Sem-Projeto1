@@ -121,7 +121,7 @@ public class Program {
 				Integer tempoEstimado = sc.nextInt();
 				System.out.print("Valor estimado: ");
 				Double valorEstimado = sc.nextDouble();
-				System.out.print("Funcionario responsável (numero funcional): ");
+				System.out.print("Funcionario responsável (numero funcional [1-20]): ");
 				Integer numeroFuncional = sc.nextInt();
 				LocalDate dataInicio = LocalDate.parse(data1, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 				Projeto p = new Projeto();
@@ -129,18 +129,50 @@ public class Program {
 					System.out.print("Data de termino (dd/MM/yyyy): ");
 					String data2 = sc.next();
 					LocalDate dataTermino = LocalDate.parse(data2, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-					p.inserirProjetoFinalizado(nomeProjeto, dataInicio, dataTermino, tempoEstimado, valorEstimado, 
+					p.inserirProjeto(nomeProjeto, dataInicio, dataTermino, tempoEstimado, valorEstimado, 
 							fun[numeroFuncional-1], fun, tamVetor, p, proj, tamVetorProjeto);
 				}
-				else if(opc == 2) {
-					p.inserirProjetoEmAndamento(nomeProjeto, dataInicio, tempoEstimado, valorEstimado, 
-					fun[numeroFuncional], fun, tamVetor, p, proj, tamVetorProjeto);
+				else if(opc2 == 2) {
+					p.inserirProjeto(nomeProjeto, dataInicio, null, tempoEstimado, valorEstimado, 
+					fun[numeroFuncional-1], fun, tamVetor, p, proj, tamVetorProjeto);
 				}
 				else {
 					System.out.println("Erro, valor digitado invalido!");
 				}	
-
 				System.out.println();
+			} else if(opc == 5) {
+				System.out.println();
+				System.out.println("[MENU] ATUALIZAR PROJETO");
+				System.out.print("Nome atual do projeto a ser atualizado: ");
+				sc.nextLine();
+				String nomeProjeto = sc.nextLine();
+				System.out.println("Qual será a nova situacao do projeto, finalizado[1] ou um projeto em andamento[2]?");
+				System.out.print("Digite 1 ou 2: ");
+				Integer opc2 = sc.nextInt();
+				System.out.print("Data de inicio (dd/MM/yyyy): ");
+				String novaData1 = sc.next();
+				System.out.print("Tempo estimado (meses):  ");
+				Integer novoTempoEstimado = sc.nextInt();
+				System.out.print("Valor estimado: ");
+				Double novoValorEstimado = sc.nextDouble();
+				System.out.print("Funcionario responsável (numero funcional [1-20]): ");
+				Integer novoNumeroFuncional = sc.nextInt();
+				LocalDate novaDataInicio = LocalDate.parse(novaData1, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+				Projeto p = new Projeto();
+				if(opc2 == 1) {
+					System.out.print("Data de termino (dd/MM/yyyy): ");
+					String novaData2 = sc.next();
+					LocalDate novaDataTermino = LocalDate.parse(novaData2, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+					p.atualizarProjeto(nomeProjeto, novaDataInicio, novaDataTermino, novoTempoEstimado, novoValorEstimado, 
+							fun[novoNumeroFuncional-1], fun, tamVetor, p, proj, tamVetorProjeto);
+				}
+				else if(opc2 == 2) {
+					p.atualizarProjeto(nomeProjeto, novaDataInicio, null, novoTempoEstimado, novoValorEstimado, 
+					fun[novoNumeroFuncional-1], fun, tamVetor, p, proj, tamVetorProjeto);
+				}
+				else {
+					System.out.println("Erro, valor digitado invalido!");
+				}
 			}
 			
 			
