@@ -98,7 +98,7 @@ public class Funcionario {
 		catch(ArrayIndexOutOfBoundsException e) {
 			System.out.println("Erro, o numero funcional digitado nao existe! Escolha outro e tente novamente!");
 		}
-		catch(NullPointerException e) {
+		catch(NullPointerException e1) {
 			System.out.println("Erro, nao existe funcionario cadastrado nesse numero funcional para ser atualizado! Escolha outro e tente novamente!");
 		}
 		

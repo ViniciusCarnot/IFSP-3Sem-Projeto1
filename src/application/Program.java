@@ -15,7 +15,8 @@ public class Program {
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
 		
-		int tamVetor = 11;
+		int tamVetor = 12;
+		int tamVetorProjeto = 12;
 		
 		Funcionario fun[] = new Funcionario[tamVetor];
 		fun[0] = new Funcionario (1, "alex silva", 5000.0);
@@ -30,7 +31,7 @@ public class Program {
 		fun[9] = new Funcionario (10, "henrique mioto", 15000.0);
 
 		
-		Projeto proj[] = new Projeto[10];
+		Projeto proj[] = new Projeto[tamVetorProjeto];
 		
 		LocalDate dataInicio0Amazon = LocalDate.parse("07/02/2025", DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 		LocalDate dataTermino0Amazon = LocalDate.parse("07/08/2025", DateTimeFormatter.ofPattern("dd/MM/yyyy"));
@@ -70,7 +71,7 @@ public class Program {
 			
 			if(opc == 1) {
 				System.out.println();
-				System.out.println("[MENU] ADICIONAR");
+				System.out.println("[MENU] ADICIONAR FUNCIONARIO");
 				System.out.print("Numero funcional desejado[1-20], (passível a modificacao pelo sistema): ");
 				Integer numeroFuncional = sc.nextInt();
 				System.out.print("Nome: ");
@@ -84,7 +85,7 @@ public class Program {
 			}
 			else if(opc == 2) {
 				System.out.println();
-				System.out.println("[MENU] ATUALIZAR");
+				System.out.println("[MENU] ATUALIZAR FUNCIONARIO");
 				System.out.print("Numero funcional do funcionário que será atualizado: ");
 				Integer numeroFuncional = sc.nextInt();
 				System.out.print("Novo nome: ");
@@ -98,13 +99,50 @@ public class Program {
 			} 
 			else if(opc == 3) {
 				System.out.println();
-				System.out.println("[MENU] DELETAR");
+				System.out.println("[MENU] DELETAR FUNCIONARIO");
 				System.out.print("Numero funcional do funcionário que será deletado: ");
 				Integer numeroFuncional = sc.nextInt();
 				Funcionario f = new Funcionario();
 				f.deletar(numeroFuncional, fun, tamVetor);
 				System.out.println();
 			}
+			else if(opc == 4) {
+				System.out.println();
+				System.out.println("[MENU] ADICIONAR PROJETO");
+				System.out.println("Deseja adicionar um projeto já finalizado[1] ou um projeto em andamento[2]?");
+				System.out.print("Digite 1 ou 2: ");
+				Integer opc2 = sc.nextInt();
+				System.out.print("Nome do projeto: ");
+				sc.nextLine();
+				String nomeProjeto = sc.nextLine();
+				System.out.print("Data de inicio (dd/MM/yyyy): ");
+				String data1 = sc.next();
+				System.out.print("Tempo estimado (meses):  ");
+				Integer tempoEstimado = sc.nextInt();
+				System.out.print("Valor estimado: ");
+				Double valorEstimado = sc.nextDouble();
+				System.out.print("Funcionario responsável (numero funcional): ");
+				Integer numeroFuncional = sc.nextInt();
+				LocalDate dataInicio = LocalDate.parse(data1, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+				Projeto p = new Projeto();
+				if(opc2 == 1) {
+					System.out.print("Data de termino (dd/MM/yyyy): ");
+					String data2 = sc.next();
+					LocalDate dataTermino = LocalDate.parse(data2, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+					p.inserirProjetoFinalizado(nomeProjeto, dataInicio, dataTermino, tempoEstimado, valorEstimado, 
+							fun[numeroFuncional-1], fun, tamVetor, p, proj, tamVetorProjeto);
+				}
+				else if(opc == 2) {
+					p.inserirProjetoEmAndamento(nomeProjeto, dataInicio, tempoEstimado, valorEstimado, 
+					fun[numeroFuncional], fun, tamVetor, p, proj, tamVetorProjeto);
+				}
+				else {
+					System.out.println("Erro, valor digitado invalido!");
+				}	
+
+				System.out.println();
+			}
+			
 			
 		}
 	
