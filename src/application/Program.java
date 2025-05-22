@@ -15,8 +15,8 @@ public class Program {
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
 		
-		int tamVetor = 12;
-		int tamVetorProjeto = 12;
+		int tamVetor = 11;
+		int tamVetorProjeto = 10;
 		
 		Funcionario fun[] = new Funcionario[tamVetor];
 		fun[0] = new Funcionario (1, "alex silva", 5000.0);
@@ -130,11 +130,12 @@ public class Program {
 					String data2 = sc.next();
 					LocalDate dataTermino = LocalDate.parse(data2, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 					p.inserirProjeto(nomeProjeto, dataInicio, dataTermino, tempoEstimado, valorEstimado, 
-							fun[numeroFuncional-1], fun, tamVetor, p, proj, tamVetorProjeto);
+							numeroFuncional, fun, tamVetor, proj, tamVetorProjeto);
 				}
 				else if(opc2 == 2) {
+					
 					p.inserirProjeto(nomeProjeto, dataInicio, null, tempoEstimado, valorEstimado, 
-					fun[numeroFuncional-1], fun, tamVetor, p, proj, tamVetorProjeto);
+							numeroFuncional, fun, tamVetor, proj, tamVetorProjeto);
 				}
 				else {
 					System.out.println("Erro, valor digitado invalido!");
@@ -164,15 +165,25 @@ public class Program {
 					String novaData2 = sc.next();
 					LocalDate novaDataTermino = LocalDate.parse(novaData2, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 					p.atualizarProjeto(nomeProjeto, novaDataInicio, novaDataTermino, novoTempoEstimado, novoValorEstimado, 
-							fun[novoNumeroFuncional-1], fun, tamVetor, p, proj, tamVetorProjeto);
+							novoNumeroFuncional, fun, tamVetor, proj, tamVetorProjeto);
 				}
 				else if(opc2 == 2) {
 					p.atualizarProjeto(nomeProjeto, novaDataInicio, null, novoTempoEstimado, novoValorEstimado, 
-					fun[novoNumeroFuncional-1], fun, tamVetor, p, proj, tamVetorProjeto);
+							novoNumeroFuncional, fun, tamVetor, proj, tamVetorProjeto);
 				}
 				else {
 					System.out.println("Erro, valor digitado invalido!");
 				}
+				System.out.println();
+			} else if(opc == 6) {
+				System.out.println();
+				System.out.println("[MENU] DELETAR PROJETO");
+				System.out.print("Nome do projeto a ser deletado: ");
+				sc.nextLine();
+				String nomeProjeto = sc.nextLine();
+				Projeto p = new Projeto();
+				p.deletarProjeto(nomeProjeto, proj, tamVetorProjeto);
+				System.out.println();
 			}
 			
 			
