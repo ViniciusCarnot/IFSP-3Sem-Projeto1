@@ -94,11 +94,16 @@ public class Projeto {
 		}
 	}
 	
+	
+		
+	
 	public void inserirProjeto(String nomeProjeto, LocalDate dataInicio, LocalDate dataTermino, Integer tempoEstimado, Double valorEstimado, 
 			Integer numeroFuncional, Funcionario vetorFuncionario[], Integer tamVetorFuncionario, Projeto vetorProjeto[], Integer tamVetorProjeto) {
 		
 		
 		try {
+			
+			
 			
 			OrdenacaoPorNome.insertionSort(vetorProjeto);
 			
@@ -133,16 +138,21 @@ public class Projeto {
 				
 			//verificar se o funcionario responsavel pelo projeto, existe
 			Boolean funcionarioExiste = false;
+			Integer indFuncionario = null;
 			
-			for(int i=0; i < tamVetorFuncionario && funcionarioExiste != true; i++) {
-				if(vetorFuncionario[i] == null && funcionarioExiste != true || funcionario == null) {
-					System.out.println("O funcionario digitado nao existe, logo o projeto nao pode ser adicionado!");
-					return;
-				} else if(funcionario.getNumero_funcional() == vetorFuncionario[i].getNumero_funcional()) {
+			for(int i=0; i<tamVetorFuncionario && vetorFuncionario[i] != null; i++) {
+				if(numeroFuncional == vetorFuncionario[i].getNumero_funcional()) {
 					funcionarioExiste = true;
+					indFuncionario = i;
 					break;
-				}	
-			}	
+				}
+			}
+			
+			if(funcionarioExiste == false) {
+				System.out.println("O funcionario digitado nao existe, logo o projeto nao pode ser adicionado!");
+				return;
+			}
+			
 		
 			//alocando projeto no vetor de projetos
 			
@@ -162,7 +172,7 @@ public class Projeto {
 			
 			// 2 VERSÃO
 			Projeto p = new Projeto(nomeProjeto, dataInicio, dataTermino, 
-					tempoEstimado, valorEstimado, vetorFuncionario[numeroFuncional]);
+					tempoEstimado, valorEstimado, vetorFuncionario[indFuncionario]);
 			vetorProjeto[indEspacoLivre] = p;
 			System.out.println("Projeto adicionado com sucesso!");
 			System.out.println(p);
@@ -186,10 +196,12 @@ public class Projeto {
 			
 			//verificar se o projeto existe
 			Boolean projetoExiste = false;
+			Integer indProjetoExistente = null;
 			
-			for(int i=0; vetorProjeto[i] != null; i++) {
+			for(int i=0; i<tamVetorProjeto && vetorProjeto[i] != null; i++) {
 				if(nomeProjeto.equals(vetorProjeto[i].getNome())) {
 					projetoExiste = true;
+					indProjetoExistente = i;
 					break;
 				}
 			}
@@ -231,25 +243,20 @@ public class Projeto {
 			
 			//atualizando projeto
 			if(projetoExiste == true && funcionarioExiste == true) {
-				for(int i=0; i<tamVetorProjeto; i++) {
-					if(vetorProjeto[i].getNome().equals(nomeProjeto)) {
-						vetorProjeto[i].setData_inicio(dataInicio);
-						vetorProjeto[i].setTempo_estimado(tempoEstimado);
-						vetorProjeto[i].setValor_estimado(valorEstimado);
-						vetorProjeto[i].setFuncionario(vetorFuncionario[indFuncionario]);
-						if(dataTermino != null) {
-							vetorProjeto[i].setData_termino(dataTermino);
-						} else {
-							vetorProjeto[i].setData_termino(null);
-						}
-							System.out.println("Projeto atualizado com sucesso!");
-							System.out.println(vetorProjeto[i]);
-							return;
-					}
+				vetorProjeto[indProjetoExistente].setData_inicio(dataInicio);
+				vetorProjeto[indProjetoExistente].setTempo_estimado(tempoEstimado);
+				vetorProjeto[indProjetoExistente].setValor_estimado(valorEstimado);
+				vetorProjeto[indProjetoExistente].setFuncionario(vetorFuncionario[indFuncionario]);
+				if(dataTermino != null) {
+					vetorProjeto[indProjetoExistente].setData_termino(dataTermino);
+				} else {
+					vetorProjeto[indProjetoExistente].setData_termino(null);
 				}
+				System.out.println("Projeto atualizado com sucesso!");
+				System.out.println(vetorProjeto[indProjetoExistente]);
+				return;
 			}
-			
-		}
+		}	
 		catch(ArrayIndexOutOfBoundsException e) {
 			System.out.println("Erro: " + e.getMessage());
 		}
@@ -310,5 +317,6 @@ public class Projeto {
 		
 		
 		}
+
 	
 }

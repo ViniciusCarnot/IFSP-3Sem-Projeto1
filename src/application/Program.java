@@ -15,8 +15,8 @@ public class Program {
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
 		
-		int tamVetor = 11;
-		int tamVetorProjeto = 10;
+		int tamVetor = 15;
+		int tamVetorProjeto = 15;
 		
 		Funcionario fun[] = new Funcionario[tamVetor];
 		fun[0] = new Funcionario (1, "alex silva", 5000.0);
@@ -104,6 +104,13 @@ public class Program {
 				Integer numeroFuncional = sc.nextInt();
 				Funcionario f = new Funcionario();
 				f.deletar(numeroFuncional, fun, tamVetor);
+				//deixando null o funcionario pertencente ao projeto
+				for(int i=0; i<tamVetorProjeto && proj[i] != null; i++) {
+					if(proj[i].getFuncionario().getNumero_funcional() == numeroFuncional) {
+						proj[i].setFuncionario(null);
+						break;
+					}
+ 				}
 				System.out.println();
 			}
 			else if(opc == 4) {
@@ -184,6 +191,19 @@ public class Program {
 				Projeto p = new Projeto();
 				p.deletarProjeto(nomeProjeto, proj, tamVetorProjeto);
 				System.out.println();
+			} else if(opc == 7) {
+				System.out.println();
+				System.out.println("LISTA DE FUNCIONARIOS...");
+				for(int i=0; i<tamVetor && fun[i] != null; i++) {
+					System.out.println(fun[i]);
+				}
+				System.out.println();
+			} else if(opc == 8) {
+				System.out.println();
+				System.out.println("LISTA DE PROJETOS...");
+				for(int i=0; i<tamVetorProjeto && proj[i] != null; i++) {
+					System.out.println(proj[i]);
+				}
 			}
 			
 			
@@ -204,10 +224,9 @@ public class Program {
 		System.out.println("[4] Adicionar Projeto");
 		System.out.println("[5] Atualizar Dados do Projeto");
 		System.out.println("[6] Deletar Projeto");
+		System.out.println("[7] Imprimir Lista de Funcionarios");
+		System.out.println("[8] Imprimir Lista de Projetos");
 	}
 	
-	public static void mostrarSubMenuInserir() {
-		
-	}
 
 }

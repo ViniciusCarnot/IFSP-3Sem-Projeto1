@@ -61,6 +61,7 @@ public class Funcionario {
 			for(int i=0; i<tamVetorFuncionario; i++) {
 				if(vetorFuncionario[i] ==  null) {
 					existeEspaco = true;
+					break;
 				}
 			}
 			
@@ -75,6 +76,7 @@ public class Funcionario {
 			for(int i=0; i<tamVetorFuncionario && vetorFuncionario[i] != null; i++) {
 				if(vetorFuncionario[i].getNumero_funcional() == numeroFuncional) {
 					estaSendoUsado = true;
+					break;
 				}
 			}
 			
@@ -99,7 +101,7 @@ public class Funcionario {
 			}	
 			
 		} catch(ArrayIndexOutOfBoundsException e) {
-					System.out.println("Erro, o numero funcional escolhido nao existe! Escolha outro e tente novamente!");
+					System.out.println(e.getMessage());
 		} 
 		catch(NullPointerException e1) {
 			System.out.println(e1.getMessage());
@@ -113,10 +115,9 @@ public class Funcionario {
 		
 		try {
 			
-			//Ordenacao.insertionSortFuncionario(vetorFuncionario);
-			
+			//verificando se o funcionario existe
 			for(int i=0; i<tamVetorFuncionario && vetorFuncionario[i] != null; i++) {
-				if(vetorFuncionario[i].getNumero_funcional() == numeroFuncional && vetorFuncionario[i].getNumero_funcional() != null) {
+				if(vetorFuncionario[i].getNumero_funcional() == numeroFuncional) {
 					vetorFuncionario[i].setNome(novoNome);
 					vetorFuncionario[i].setSalary(novoSalario);
 					System.out.println("Dados do funcionario, atualizados com sucesso!");
@@ -143,7 +144,9 @@ public class Funcionario {
 		
 		try {
 			
-			for(int i=0; i<tamVetorFuncionario; i++) {
+			//verificando se o funcionário existe
+			
+			for(int i=0; i<tamVetorFuncionario && vetorFuncionario[i] != null; i++) {
 				if(vetorFuncionario[i].getNumero_funcional() == numeroFuncional) {
 					vetorFuncionario[i] = null;
 					System.out.println("Funcionario deletado com sucesso!");
@@ -155,8 +158,12 @@ public class Funcionario {
 			return;
 		}
 		catch(ArrayIndexOutOfBoundsException e) {
-			System.out.println("Erro, o numero funcional digitado nao existe! Escolha outro e tente novamente!");
+			System.out.println(e.getMessage());
 		}
+		catch(NullPointerException e1) {
+			System.out.println(e1.getMessage());
+		}
+		
 		
 	}
 	
