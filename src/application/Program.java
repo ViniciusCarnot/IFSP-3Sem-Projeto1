@@ -210,6 +210,12 @@ public class Program {
 				Funcionario f = new Funcionario();
 				f.salarioMaiorDezMil(fun, tamVetor);
 				System.out.println();
+			} else if(opc == 10) {
+				System.out.println();
+				System.out.println("LISTA DE PROJETOS EM ANDAMENTO COM VALORES ESTIMADOS ACIMA DE 500 MIL...");
+				Projeto p = new Projeto();
+				p.projetosEmAndamentoMaisDe500Mil(proj, tamVetorProjeto);
+				System.out.println();
 			}
 		}
 	
@@ -231,6 +237,7 @@ public class Program {
 		System.out.println("[7] Imprimir Lista de Funcionarios");
 		System.out.println("[8] Imprimir Lista de Projetos");
 		System.out.println("[9] Imprimir Lista de Funcionarios com Salarios Maiores de 10 mil");
+		System.out.println("[10] Imprimir Lista de Projetos Em Andamento com Valores Estimados Acima de 500 Mil");
 	}
 	
 

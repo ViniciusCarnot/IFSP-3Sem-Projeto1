@@ -95,6 +95,37 @@ public class Projeto {
 	}
 	
 	
+	
+	public void projetosEmAndamentoMaisDe500Mil(Projeto vetorProjeto[], Integer tamVetorProjeto) {
+		
+		try {
+			
+			//projetos em andamento, data de termino = null
+			
+			Projeto vetorProjetosEmAndamento[] = new Projeto[tamVetorProjeto];
+			
+			int j=0;
+			for(int i=0; i < tamVetorProjeto && vetorProjeto[i] != null; i++) {
+				if(vetorProjeto[i].getData_termino() == null && vetorProjeto[i].getValor_estimado() > 500000.0) {
+					vetorProjetosEmAndamento[j] = vetorProjeto[i];
+					j++;
+				}
+			}
+			
+			OrdenacaoPorNome.shellSort(vetorProjetosEmAndamento);
+			
+			for(int i=0; i < tamVetorProjeto && vetorProjetosEmAndamento[i] != null; i++) {
+				System.out.println(vetorProjetosEmAndamento[i]);
+			}
+			
+		}
+		catch(ArrayIndexOutOfBoundsException e) {
+			System.out.println("Erro: " + e.getMessage());
+		}
+		catch(NullPointerException e1) {
+			System.out.println("Erro: " + e1.getMessage());
+		}
+	}
 		
 	
 	public void inserirProjeto(String nomeProjeto, LocalDate dataInicio, LocalDate dataTermino, Integer tempoEstimado, Double valorEstimado, 
@@ -175,6 +206,7 @@ public class Projeto {
 					tempoEstimado, valorEstimado, vetorFuncionario[indFuncionario]);
 			vetorProjeto[indEspacoLivre] = p;
 			System.out.println("Projeto adicionado com sucesso!");
+			OrdenacaoPorNome.insertionSort(vetorProjeto);
 			System.out.println(p);
 			return;				
 			

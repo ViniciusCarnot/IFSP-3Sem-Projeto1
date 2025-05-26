@@ -26,8 +26,8 @@ public class OrdenacaoPorNome extends Projeto {
 	     if (b == null) return -1;
 	
 	     // Trata nomes null
-	     String nomeA = a.getNome();
-	     String nomeB = b.getNome();
+	     String nomeA = a.getNome().toUpperCase();
+	     String nomeB = b.getNome().toUpperCase();
 	
 	     if (nomeA == null && nomeB == null) return 0;
 	     if (nomeA == null) return 1;
@@ -50,6 +50,49 @@ public class OrdenacaoPorNome extends Projeto {
 
 	     return 0; // Iguais
 	    
-	 	}
+	 }
+     
+     public static void shellSort(Projeto vetorProjetosEmAndamento[]) {
+         int n = vetorProjetosEmAndamento.length;
 
+         // Aplica o Shell Sort nos valores não nulos
+         // Começa com um gap grande e o reduz gradualmente
+         for (int gap = n / 2; gap > 0; gap = gap / 2) {
+             // Realiza um insertion sort para cada gap
+             for (int i = gap; i < n; i++) {
+            	// Guarda arr[i] para ser inserido na posição correta
+            	 Projeto tempProjeto = vetorProjetosEmAndamento[i];
+            	 
+                 int j;
+                 for (j = i; j >= gap; j -= gap) {
+                     Projeto prev = vetorProjetosEmAndamento[j - gap];
+
+                     // Regras de comparação para tratar nulls:
+                     // 1. Se prev for null e temp não for null: prev deve vir depois de temp, então desloca prev.
+                     // 2. Se temp for null e prev não for null: temp deve vir depois de prev, então não desloca.
+                     // 3. Se ambos forem null: são equivalentes, não desloca (ordem relativa mantida).
+                     // 4. Se nenhum for null: compara os valores double normalmente.
+
+                     if (tempProjeto != null && prev == null) {
+                         // temp (null) é "menor" que prev (não-null), então prev deve vir depois.
+                    	 vetorProjetosEmAndamento[j] = prev;
+                     } else if (tempProjeto == null) {
+                         // prev (null) é "menor" que temp (não-null), então prev já está no lugar.
+                         // Não precisamos mover.
+                         break;
+                     } else if (prev.getValor_estimado() > tempProjeto.getValor_estimado()) {
+                         // Ambos não são null. Se prev.value é maior que temp.value,
+                         // prev deve vir depois. Desloca prev.
+                    	 vetorProjetosEmAndamento[j] = prev;
+                     } else {
+                         // A posição correta foi encontrada (temp é "maior" ou igual a prev).
+                         break;
+                     }
+                 }
+                 // Coloca temp na sua posição correta
+                 vetorProjetosEmAndamento[j] = tempProjeto;
+             }
+         }    
+     }
+         
 }
