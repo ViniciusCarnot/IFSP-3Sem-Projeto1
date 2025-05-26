@@ -204,9 +204,13 @@ public class Program {
 				for(int i=0; i<tamVetorProjeto && proj[i] != null; i++) {
 					System.out.println(proj[i]);
 				}
+			} else if(opc == 9) {
+				System.out.println();
+				System.out.println("LISTA DE FUNCIONARIOS COM SALARIOS MAIORES DE 10 MIL...");
+				Funcionario f = new Funcionario();
+				f.salarioMaiorDezMil(fun, tamVetor);
+				System.out.println();
 			}
-			
-			
 		}
 	
 		
@@ -226,6 +230,7 @@ public class Program {
 		System.out.println("[6] Deletar Projeto");
 		System.out.println("[7] Imprimir Lista de Funcionarios");
 		System.out.println("[8] Imprimir Lista de Projetos");
+		System.out.println("[9] Imprimir Lista de Funcionarios com Salarios Maiores de 10 mil");
 	}
 	
 
