@@ -225,6 +225,12 @@ public class Program {
 				ProjetoAtrasado pa = new ProjetoAtrasado();
 				pa.imprimirInformacoes(proj, tamVetorProjeto);
 				System.out.println();
+			} else if(opc == 12) {
+				System.out.println("LISTA DE FUNCIONARIOS RESPONSAVEIS POR PROJETOS EM ANDAMENTO...");
+				System.out.println("DATA ATUAL DE REFERÊNCIA: 13/08/2025");
+				Projeto p = new Projeto();
+				p.imprimirFuncionariosResponsaveisPorProjetosEmAndamento(proj, tamVetorProjeto, tamVetor);
+				System.out.println();
 			}
 		}
 	
@@ -248,6 +254,7 @@ public class Program {
 		System.out.println("[9] Imprimir Lista de Funcionarios com Salarios Maiores de 10 mil");
 		System.out.println("[10] Imprimir Lista de Projetos Em Andamento com Valores Estimados Acima de 500 Mil");
 		System.out.println("[11] Imprimir Lista de Projetos Atrasados");
+		System.out.println("[12] Imprimir Lista de Funcionarios Responsaveis por Projetos Em Andamento");
 	}
 	
 

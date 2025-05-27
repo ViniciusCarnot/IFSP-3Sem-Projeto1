@@ -1,9 +1,9 @@
 package entities;
 
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import algorithms.OrdenacaoFuncionario;
 import algorithms.OrdenacaoProjeto;
 
 public class Projeto {
@@ -95,7 +95,57 @@ public class Projeto {
 		}
 	}
 	
-	
+	public void imprimirFuncionariosResponsaveisPorProjetosEmAndamento(Projeto vetorProjeto[], Integer tamVetorProjeto, Integer tamVetorFuncionario) {
+		
+		try {
+			
+			Funcionario vetorFuncionariosResponsaveis[] = new Funcionario[tamVetorFuncionario];
+			Funcionario vetorResultante[] = new Funcionario[tamVetorFuncionario];
+			
+			//armazenando funcionarios responsáveis por projetos em andamento, *tem repetição de funcionários
+			for(int i=0; i < tamVetorProjeto && vetorProjeto[i] != null; i++) {
+				//projetos em andamento
+				if(vetorProjeto[i].getData_termino() == null) {
+					
+					vetorFuncionariosResponsaveis[i] = vetorProjeto[i].getFuncionario();
+					
+				} else {
+					continue;
+				}
+			}
+			
+			//ordenando vetorFuncionariosResponsaveis
+			OrdenacaoFuncionario.insertionSort(vetorFuncionariosResponsaveis);
+			
+			//armazenando funcionarios responsáveis por projetos em andamento, *sem repetição de funcionários
+			for(int i=0; i < tamVetorFuncionario && vetorFuncionariosResponsaveis[i] != null; i++) {
+				
+				//se isso acontecer, siginifica que o funcionario do vetorFuncionariosResponsaveis ainda não foi adicionado no vetorResultante
+				if(OrdenacaoFuncionario.buscaBinariaNumeroFuncional(vetorResultante, vetorFuncionariosResponsaveis[i].getNumero_funcional()) == -1) {
+					vetorResultante[i] = vetorFuncionariosResponsaveis[i];
+					OrdenacaoFuncionario.insertionSort(vetorResultante);
+				}
+				
+			}
+			
+			//ordenando vetorResultante
+			OrdenacaoFuncionario.insertionSort(vetorResultante);
+			
+			//printando vetor resultante
+			for(int i=0; i < tamVetorFuncionario && vetorResultante[i] != null; i++) {
+				System.out.println(vetorResultante[i]);
+			}
+			
+		}
+		catch(ArrayIndexOutOfBoundsException e) {
+			System.out.println("Erro: " + e.getMessage());
+		}
+		catch(NullPointerException e1) {
+			System.out.println("Erro: " + e1.getMessage());
+		}
+		
+		
+	}
 	
 	public void projetosEmAndamentoMaisDe500Mil(Projeto vetorProjeto[], Integer tamVetorProjeto) {
 		
