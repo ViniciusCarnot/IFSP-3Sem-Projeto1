@@ -1,9 +1,10 @@
 package entities;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import algorithms.OrdenacaoPorNome;
+import algorithms.OrdenacaoProjeto;
 
 public class Projeto {
 	
@@ -112,7 +113,7 @@ public class Projeto {
 				}
 			}
 			
-			OrdenacaoPorNome.shellSort(vetorProjetosEmAndamento);
+			OrdenacaoProjeto.shellSort(vetorProjetosEmAndamento);
 			
 			for(int i=0; i < tamVetorProjeto && vetorProjetosEmAndamento[i] != null; i++) {
 				System.out.println(vetorProjetosEmAndamento[i]);
@@ -126,6 +127,9 @@ public class Projeto {
 			System.out.println("Erro: " + e1.getMessage());
 		}
 	}
+	
+	
+	
 		
 	
 	public void inserirProjeto(String nomeProjeto, LocalDate dataInicio, LocalDate dataTermino, Integer tempoEstimado, Double valorEstimado, 
@@ -136,7 +140,7 @@ public class Projeto {
 			
 			
 			
-			OrdenacaoPorNome.insertionSort(vetorProjeto);
+			OrdenacaoProjeto.insertionSort(vetorProjeto);
 			
 			//verificar se existe espaço para armazenar um projeto
 			Boolean espacoLivre = false;
@@ -206,7 +210,7 @@ public class Projeto {
 					tempoEstimado, valorEstimado, vetorFuncionario[indFuncionario]);
 			vetorProjeto[indEspacoLivre] = p;
 			System.out.println("Projeto adicionado com sucesso!");
-			OrdenacaoPorNome.insertionSort(vetorProjeto);
+			OrdenacaoProjeto.insertionSort(vetorProjeto);
 			System.out.println(p);
 			return;				
 			
@@ -336,7 +340,7 @@ public class Projeto {
 			// 2 VERSÃO
 			vetorProjeto[indProjetoExiste] =  null;
 			System.out.println("Projeto deletado com sucesso!");
-			OrdenacaoPorNome.insertionSort(vetorProjeto);
+			OrdenacaoProjeto.insertionSort(vetorProjeto);
 			return;
 			
 		}

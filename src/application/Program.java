@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import entities.Funcionario;
 import entities.Projeto;
+import entities.ProjetoAtrasado;
 
 public class Program {
 
@@ -204,6 +205,7 @@ public class Program {
 				for(int i=0; i<tamVetorProjeto && proj[i] != null; i++) {
 					System.out.println(proj[i]);
 				}
+				System.out.println();
 			} else if(opc == 9) {
 				System.out.println();
 				System.out.println("LISTA DE FUNCIONARIOS COM SALARIOS MAIORES DE 10 MIL...");
@@ -213,8 +215,15 @@ public class Program {
 			} else if(opc == 10) {
 				System.out.println();
 				System.out.println("LISTA DE PROJETOS EM ANDAMENTO COM VALORES ESTIMADOS ACIMA DE 500 MIL...");
+				System.out.println("DATA ATUAL DE REFERÊNCIA: 13/08/2025");
 				Projeto p = new Projeto();
 				p.projetosEmAndamentoMaisDe500Mil(proj, tamVetorProjeto);
+				System.out.println();
+			} else if(opc == 11) {
+				System.out.println("LISTA DE PROJETOS ATRASADOS...");
+				System.out.println("DATA ATUAL DE REFERÊNCIA: 13/08/2025");
+				ProjetoAtrasado pa = new ProjetoAtrasado();
+				pa.imprimirInformacoes(proj, tamVetorProjeto);
 				System.out.println();
 			}
 		}
@@ -238,6 +247,7 @@ public class Program {
 		System.out.println("[8] Imprimir Lista de Projetos");
 		System.out.println("[9] Imprimir Lista de Funcionarios com Salarios Maiores de 10 mil");
 		System.out.println("[10] Imprimir Lista de Projetos Em Andamento com Valores Estimados Acima de 500 Mil");
+		System.out.println("[11] Imprimir Lista de Projetos Atrasados");
 	}
 	
 

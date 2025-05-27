@@ -3,7 +3,7 @@ package teste;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import algorithms.OrdenacaoPorNome;
+import algorithms.OrdenacaoProjeto;
 import entities.Funcionario;
 import entities.Projeto;
 
@@ -82,7 +82,7 @@ public class ProgramaTeste {
 			new Projeto ("Apple", dataInicio1Apple, dataTermino1Apple, 2, 400000.0, fun[8]),
 		};
 		
-		OrdenacaoPorNome.insertionSort(projetos);
+		OrdenacaoProjeto.insertionSort(projetos);
 		
 		for(Projeto p: projetos) {
 			System.out.println(p);

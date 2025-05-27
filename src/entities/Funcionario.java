@@ -1,7 +1,7 @@
 package entities;
 
 
-import algorithms.Ordenacao;
+import algorithms.OrdenacaoFuncionario;
 
 public class Funcionario {
 	
@@ -49,58 +49,7 @@ public class Funcionario {
 		
 	}
 	
-	public static Integer buscaBinaria(Funcionario vetorFuncionario[], Integer numeroFuncional) {
-		
-		if (vetorFuncionario == null || vetorFuncionario.length == 0) {
-            return -1; // Array nulo ou vazio, não há nada para pesquisar
-        }
-
-        // 1. Encontrar o verdadeiro 'alto' índice (último elemento não-nulo)
-        int fim = vetorFuncionario.length - 1;
-        while (fim >= 0 && vetorFuncionario[fim] == null) {
-            fim--;
-        }
-
-        // Se todos os elementos forem nulos, ou o array for efetivamente vazio após remover nulos
-        if (fim < 0) {
-            return -1;
-        }
 	
-		int inicio = 0; // O índice inicial do segmento de busca
-
-        // Continua a busca enquanto o índice de início não ultrapassar o índice de fim
-        while (inicio <= fim) {
-            // Calcula o índice do meio.
-            // Uso de (inicio + fim) / 2 pode causar overflow se inicio e fim forem muito grandes.
-            // Uma forma mais segura é: inicio + (fim - inicio) / 2
-            int meio = inicio + (fim - inicio) / 2;
-            
-            if(vetorFuncionario[meio] == null) {
-            	fim = meio -1;
-            	continue;
-            }
-
-            // Caso 1: O elemento no meio é igual à chave
-            if (vetorFuncionario[meio].getNumero_funcional() == numeroFuncional) {
-                return meio; // Chave encontrada, retorna seu índice
-            }
-            // Caso 2: O elemento no meio é menor que a chave
-            // Isso significa que a chave (se existir) deve estar na metade superior
-            else if (vetorFuncionario[meio].getNumero_funcional() < numeroFuncional) {
-                inicio = meio + 1; // Ajusta o início para buscar na metade superior
-            }
-            // Caso 3: O elemento no meio é maior que a chave
-            // Isso significa que a chave (se existir) deve estar na metade inferior
-            else { // arr[meio] > chave
-                fim = meio - 1; // Ajusta o fim para buscar na metade inferior
-            }
-        }
-
-        // Se o loop terminar, significa que a chave não foi encontrada no array
-        return -1;
-		
-		
-	}
 	
 	public void salarioMaiorDezMil(Funcionario vetorFuncionario[], Integer tamVetorFuncionario) {
 		
@@ -114,7 +63,7 @@ public class Funcionario {
 				}
 			}
 			
-			Ordenacao.insertionSortFuncionarioSalarioDecrescente(funcionariosMaiorDezMil);
+			OrdenacaoFuncionario.insertionSortSalarioDecrescente(funcionariosMaiorDezMil);
 			
 			for(int i = vetorFuncionario.length - 1; i >= 0 && funcionariosMaiorDezMil[i] != null; i--) {
 				System.out.println(funcionariosMaiorDezMil[i]);
@@ -135,7 +84,7 @@ public class Funcionario {
 		
 		try {
 			
-			Ordenacao.insertionSortFuncionario(vetorFuncionario);
+			OrdenacaoFuncionario.insertionSort(vetorFuncionario);
 			
 			//verificando se existe espaco para adicionar mais funcionarios
 			Boolean existeEspaco = false;
@@ -156,7 +105,7 @@ public class Funcionario {
 			
 			Boolean estaSendoUsado = false;
 			
-			Integer busca = buscaBinaria(vetorFuncionario, numeroFuncional);
+			Integer busca = OrdenacaoFuncionario.buscaBinariaNumeroFuncional(vetorFuncionario, numeroFuncional);
 			
 			if(busca != -1) {
 				estaSendoUsado = true;
@@ -178,7 +127,7 @@ public class Funcionario {
 					if(estaSendoUsado == false) {
 						f = new Funcionario(numeroFuncional, nome, salario);
 						vetorFuncionario[i] = f;
-						Ordenacao.insertionSortFuncionario(vetorFuncionario);
+						OrdenacaoFuncionario.insertionSort(vetorFuncionario);
 						System.out.println("Funcionario adicionado com sucesso!");
 					} else {
 						int j = i;
@@ -186,12 +135,12 @@ public class Funcionario {
 						do {
 							novoNumeroFuncional = j+1;
 							//verificando se o novo número funcional estabelecido pelo sistema já está sendo usado
-							busca = buscaBinaria(vetorFuncionario, novoNumeroFuncional);
+							busca = OrdenacaoFuncionario.buscaBinariaNumeroFuncional(vetorFuncionario, novoNumeroFuncional);
 							j++;
 						} while(busca != -1);
 						f = new Funcionario(novoNumeroFuncional, nome, salario);
 						vetorFuncionario[i] = f;
-						Ordenacao.insertionSortFuncionario(vetorFuncionario);
+						OrdenacaoFuncionario.insertionSort(vetorFuncionario);
 						System.out.println("Funcionario adicionado com sucesso! Porem o numero funcional escolhido, já está sendo usado. O sistema definiu outro automaticamente!");
 						
 					}
@@ -217,7 +166,7 @@ public class Funcionario {
 			
 			//verificando se o funcionario existe
 			
-			Integer busca = buscaBinaria(vetorFuncionario, numeroFuncional);
+			Integer busca = OrdenacaoFuncionario.buscaBinariaNumeroFuncional(vetorFuncionario, numeroFuncional);
 			
 			if(busca == -1) {
 				System.out.println("O numero funcional digitado nao pertence a nenhum funcionario! Tente novamente!");
@@ -259,7 +208,7 @@ public class Funcionario {
 			
 			//verificando se o funcionário existe
 			
-			Integer busca = buscaBinaria(vetorFuncionario, numeroFuncional);
+			Integer busca = OrdenacaoFuncionario.buscaBinariaNumeroFuncional(vetorFuncionario, numeroFuncional);
 			
 			if(busca == -1) {
 				System.out.println("Erro, o numero funcional digitado nao pertence a nenhum funcionario! Tente novamente!");
@@ -267,7 +216,7 @@ public class Funcionario {
 			} else {
 				vetorFuncionario[busca] = null;
 				System.out.println("Funcionario deletado com sucesso!");
-				Ordenacao.insertionSortFuncionario(vetorFuncionario);
+				OrdenacaoFuncionario.insertionSort(vetorFuncionario);
 				return;
 			}
 			

@@ -2,14 +2,14 @@ package algorithms;
 
 import entities.Projeto;
 
-public class OrdenacaoPorNome extends Projeto {
+public class OrdenacaoProjeto extends Projeto {
 
     public static void insertionSort(Projeto vetorProjeto[]) {
     	for (int i = 1; i < vetorProjeto.length; i++) {
             Projeto chave = vetorProjeto[i];
             int j = i - 1;
 
-            while (j >= 0 && compararProjetos(vetorProjeto[j], chave) > 0) {
+            while (j >= 0 && compareProjetos(vetorProjeto[j], chave) > 0) {
                 vetorProjeto[j + 1] = vetorProjeto[j];
                 j--;
             }
@@ -18,7 +18,7 @@ public class OrdenacaoPorNome extends Projeto {
     }
 
 	 // Comparação manual entre objetos Pessoa
-     public static int compararProjetos(Projeto a, Projeto b) {
+     public static int compareProjetos(Projeto a, Projeto b) {
     	
 	     // Trata objetos null
     	 if (a == null && b == null) return 0;
@@ -51,7 +51,8 @@ public class OrdenacaoPorNome extends Projeto {
 	     return 0; // Iguais
 	    
 	 }
-     
+ 
+//------------------------------------------------------------------------------------------------------------------------------------------------------   
      public static void shellSort(Projeto vetorProjetosEmAndamento[]) {
          int n = vetorProjetosEmAndamento.length;
 
@@ -94,5 +95,6 @@ public class OrdenacaoPorNome extends Projeto {
              }
          }    
      }
+     
          
 }

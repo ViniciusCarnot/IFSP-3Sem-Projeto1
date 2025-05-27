@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.Scanner;
 
-import algorithms.Ordenacao;
+import algorithms.OrdenacaoFuncionario;
 import entities.Funcionario;
 
 
