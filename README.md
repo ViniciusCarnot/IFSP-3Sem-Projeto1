@@ -1,5 +1,5 @@
 # Projeto Estrutura de Dados
-Projeto que desenvolvi durante 3° semestre da faculdade, durante a disciplina de Estrutura de Dados. Trata-se de um sistema de gerenciamento de funcionários e de projetos de uma empresa fictícia.
+Projeto que desenvolvi durante 3° semestre da faculdade, para a disciplina de Estrutura de Dados. Trata-se de um sistema de gerenciamento de funcionários e de projetos de uma empresa fictícia.
 
 [Projeto1_Explicacao.pdf](https://github.com/user-attachments/files/21532897/Projeto1_Explicacao.pdf)
 
