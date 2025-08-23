@@ -5,7 +5,6 @@ Projeto que desenvolvi durante 3° semestre da faculdade, para a disciplina de E
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 ## Objetivo Geral
-- Implementar operações de CRUD
 - Implementar manualmente algoritmos de ordenação e busca
 ------------------------------------------------------------------------------------------------------------------------------------------
 ## Tecnologias / Técnicas Utilizadas
